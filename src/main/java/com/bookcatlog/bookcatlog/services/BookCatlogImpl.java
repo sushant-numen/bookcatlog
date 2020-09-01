@@ -18,16 +18,19 @@ public class BookCatlogImpl implements BookCatlogService {
     }
     @Override
     public ResBookCatlog createBook (ReqBookCatlog reqBookCatlog) {
+
         BookCatlogAudit bookCatlogAudit = new BookCatlogAudit();
+
         bookCatlogAudit.setBookName(reqBookCatlog.getBookName());
         bookCatlogAudit.setBookId(reqBookCatlog.getBookId());
         bookCatlogAudit.setAuthor(reqBookCatlog.getAuthor());
 
         bookCatlogAudit=bookCatlogRepo.save(bookCatlogAudit);
-        ResBookCatlog resBookCatlog =new ResBookCatlog("success");
+        ResBookCatlog resBookCatlog =new ResBookCatlog("Book Created");
+        bookCatlogRepo.save(bookCatlogAudit);
 
         return  resBookCatlog;
     }
 
-
+    
 }

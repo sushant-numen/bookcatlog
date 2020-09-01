@@ -11,12 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.io.UnsupportedEncodingException;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/book/v1/")
@@ -38,10 +33,11 @@ public class BookCatlogController {
         return new ResponseEntity<>(
                 new BaseResponse<>(
                         "success",
-                        BookCatlogService.createBook(reqBookCatlog)
+                        bookCatlogService.createBook(reqBookCatlog)
                 ),
                 HttpStatus.OK
         );
     }
+
 
 }
