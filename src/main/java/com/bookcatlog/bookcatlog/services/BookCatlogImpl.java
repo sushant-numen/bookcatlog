@@ -58,8 +58,13 @@ public class BookCatlogImpl implements BookCatlogService {
 //    }
 
     @Override
-    public List<BookCatlogAudit> searchByName(String bookName){
+    public List<BookCatlogAudit> searchBookByName(String bookName){
         return bookCatlogRepo.findByBookName(bookName);
+
+    }
+    @Override
+    public List<BookCatlogAudit> searchBookByAuthor(String author){
+        return bookCatlogRepo.findByauthor(author);
 
     }
     

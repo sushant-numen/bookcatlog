@@ -10,7 +10,8 @@ public interface BookCatlogService {
        ResBookCatlog createBook(ReqBookCatlog reqBookCatlog);
        ResBookCatlog deleteBookById(Integer bookId);
        ResBookCatlog deleteByBookName(String bookName);
-       List<BookCatlogAudit> searchByName(String bookName);
+       List<BookCatlogAudit> searchBookByName(String bookName);
+       List<BookCatlogAudit> searchBookByAuthor(String author);
 
 
 

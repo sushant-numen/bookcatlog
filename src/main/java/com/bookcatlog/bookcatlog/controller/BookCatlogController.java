@@ -63,12 +63,23 @@ public class BookCatlogController {
         );
     }
 
-    @PostMapping(value = "/searchByName")
-    public ResponseEntity<BaseResponse<List<BookCatlogAudit>>>searchByName (@RequestParam String bookName)  {
+    @PostMapping(value = "/searchBookByName")
+    public ResponseEntity<BaseResponse<List<BookCatlogAudit>>>searchBookByName (@RequestParam String bookName)  {
         return new ResponseEntity<>(
                 new BaseResponse<>(
                         "success",
-                        bookCatlogService.searchByName(bookName)
+                        bookCatlogService.searchBookByName(bookName)
+                ),
+                HttpStatus.OK
+        );
+    }
+
+    @PostMapping(value = "/searchBookByAuthor")
+    public ResponseEntity<BaseResponse<List<BookCatlogAudit>>>searchBookByAuthor (@RequestParam String author)  {
+        return new ResponseEntity<>(
+                new BaseResponse<>(
+                        "success",
+                        bookCatlogService.searchBookByAuthor(author)
                 ),
                 HttpStatus.OK
         );

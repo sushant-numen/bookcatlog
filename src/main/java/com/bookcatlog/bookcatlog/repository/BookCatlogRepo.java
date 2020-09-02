@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface BookCatlogRepo extends JpaRepository <BookCatlogAudit,Integer>{
     void deleteByBookName(String bookName);
-
-    List<BookCatlogAudit> findByBookName(String bookName);
-
     void deleteByBookId(Integer bookId);
+    List<BookCatlogAudit> findByBookName(String bookName);
+    List<BookCatlogAudit> findByauthor(String author);
 }
