@@ -7,9 +7,11 @@ import com.bookcatlog.bookcatlog.repository.BookCatlogRepo;
 import com.bookcatlog.bookcatlog.services.base.BookCatlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class BookCatlogImpl implements BookCatlogService {
     private final BookCatlogRepo bookCatlogRepo;
@@ -51,11 +53,6 @@ public class BookCatlogImpl implements BookCatlogService {
 
 
     }
-
-//    @Override
-//    public List<Transaction> findTransactionsByCardId(long id) {
-//        return transactionRepository.findTransactionsByCardId(id);
-//    }
 
     @Override
     public List<BookCatlogAudit> searchBookByName(String bookName){
