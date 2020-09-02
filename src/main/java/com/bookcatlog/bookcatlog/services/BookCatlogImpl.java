@@ -8,6 +8,8 @@ import com.bookcatlog.bookcatlog.services.base.BookCatlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookCatlogImpl implements BookCatlogService {
     private final BookCatlogRepo bookCatlogRepo;
@@ -18,19 +20,47 @@ public class BookCatlogImpl implements BookCatlogService {
     }
     @Override
     public ResBookCatlog createBook (ReqBookCatlog reqBookCatlog) {
+         BookCatlogAudit bookCatlogAudit=new BookCatlogAudit();
 
-        BookCatlogAudit bookCatlogAudit = new BookCatlogAudit();
+         bookCatlogAudit.setBookName(reqBookCatlog.getBookName());
+         bookCatlogAudit.setAuthor(reqBookCatlog.getAuthor());
+         bookCatlogAudit.setBookId(reqBookCatlog.getBookId());
 
-        bookCatlogAudit.setBookName(reqBookCatlog.getBookName());
-        bookCatlogAudit.setBookId(reqBookCatlog.getBookId());
-        bookCatlogAudit.setAuthor(reqBookCatlog.getAuthor());
-
-        bookCatlogAudit=bookCatlogRepo.save(bookCatlogAudit);
-        ResBookCatlog resBookCatlog =new ResBookCatlog("Book Created");
-        bookCatlogRepo.save(bookCatlogAudit);
+         bookCatlogAudit=bookCatlogRepo.save(bookCatlogAudit);
+         ResBookCatlog resBookCatlog= new ResBookCatlog(("success"));
+         bookCatlogRepo.save(bookCatlogAudit);
 
         return  resBookCatlog;
     }
 
+    @Override
+    public ResBookCatlog deleteBookById (Integer bookId) {
+
+        bookCatlogRepo.deleteByBookId(bookId);
+        ResBookCatlog resBookCatlog= new ResBookCatlog(("success"));
+        return  resBookCatlog;
+
+
+    }
+    @Override
+    public ResBookCatlog deleteByBookName (String bookName) {
+
+        bookCatlogRepo.deleteByBookName(bookName);
+        ResBookCatlog resBookCatlog= new ResBookCatlog(("success"));
+        return  resBookCatlog;
+
+
+    }
+
+//    @Override
+//    public List<Transaction> findTransactionsByCardId(long id) {
+//        return transactionRepository.findTransactionsByCardId(id);
+//    }
+
+    @Override
+    public List<BookCatlogAudit> searchByName(String bookName){
+        return bookCatlogRepo.findByBookName(bookName);
+
+    }
     
 }

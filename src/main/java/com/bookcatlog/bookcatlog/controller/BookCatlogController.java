@@ -1,6 +1,7 @@
 package com.bookcatlog.bookcatlog.controller;
 
 
+import com.bookcatlog.bookcatlog.models.BookCatlogAudit;
 import com.bookcatlog.bookcatlog.pojos.BaseResponse;
 import com.bookcatlog.bookcatlog.pojos.requests.ReqBookCatlog;
 import com.bookcatlog.bookcatlog.pojos.responses.ResBookCatlog;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/book/v1/")
@@ -38,6 +41,40 @@ public class BookCatlogController {
                 HttpStatus.OK
         );
     }
+    @DeleteMapping(value="/deleteBookById")
+    public ResponseEntity<BaseResponse<ResBookCatlog>> deleteBookById(@RequestParam Integer bookId )  {
+        return new ResponseEntity<>(
+                new BaseResponse<>(
+                        "success",
+                        bookCatlogService.deleteBookById(bookId)
+                ),
+                HttpStatus.OK
+        );
+    }
+
+    @DeleteMapping(value="/deleteBookByName")
+    public ResponseEntity<BaseResponse<ResBookCatlog>>deleteBookByName (@RequestParam String bookName )  {
+        return new ResponseEntity<>(
+                new BaseResponse<>(
+                        "success",
+                        bookCatlogService.deleteByBookName(bookName)
+                ),
+                HttpStatus.OK
+        );
+    }
+
+    @PostMapping(value = "/searchByName")
+    public ResponseEntity<BaseResponse<List<BookCatlogAudit>>>searchByName (@RequestParam String bookName)  {
+        return new ResponseEntity<>(
+                new BaseResponse<>(
+                        "success",
+                        bookCatlogService.searchByName(bookName)
+                ),
+                HttpStatus.OK
+        );
+    }
+
+
 
 
 }
