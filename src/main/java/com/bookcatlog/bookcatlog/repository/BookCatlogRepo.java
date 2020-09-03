@@ -12,4 +12,6 @@ public interface BookCatlogRepo extends JpaRepository <BookCatlogAudit,Integer>{
     void deleteByBookName(String bookName);
 
     void deleteByBookId(Integer bookId);
+
+    BookCatlogAudit findByBookId(Integer bookId);
 }

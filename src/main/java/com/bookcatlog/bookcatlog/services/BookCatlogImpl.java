@@ -34,6 +34,24 @@ public class BookCatlogImpl implements BookCatlogService {
 
         return  resBookCatlog;
     }
+    @Override
+    public  ResBookCatlog updateBook(ReqBookCatlog reqBookCatlog){
+        BookCatlogAudit existingBook=bookCatlogRepo.findByBookId(reqBookCatlog.getBookId());
+        if(reqBookCatlog.getBookName().length()>0){
+            existingBook.setBookName(reqBookCatlog.getBookName());
+        }
+        if(reqBookCatlog.getAuthor().length()>0){
+            existingBook.setAuthor(reqBookCatlog.getAuthor());
+        }
+//        existingBook=bookCatlogRepo.save(existingBook);
+        bookCatlogRepo.save(existingBook);
+
+
+        ResBookCatlog resBookCatlog= new ResBookCatlog(("success"));
+        return  resBookCatlog;
+
+
+    }
 
     @Override
     public ResBookCatlog deleteBookById (Integer bookId) {
@@ -64,5 +82,7 @@ public class BookCatlogImpl implements BookCatlogService {
         return bookCatlogRepo.findByauthor(author);
 
     }
+
+
     
 }

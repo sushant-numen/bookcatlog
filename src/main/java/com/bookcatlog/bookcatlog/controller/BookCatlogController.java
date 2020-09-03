@@ -85,7 +85,16 @@ public class BookCatlogController {
         );
     }
 
-
+    @PutMapping(value ="/updateBookByBookId")
+    public ResponseEntity<BaseResponse<ResBookCatlog>>updateBookByBookId (@RequestBody ReqBookCatlog reqBookCatlog ) {
+        return new ResponseEntity<>(
+                new BaseResponse<>(
+                        "success",
+                        bookCatlogService.updateBook(reqBookCatlog)
+                ),
+                HttpStatus.OK
+        );
+    }
 
 
 }

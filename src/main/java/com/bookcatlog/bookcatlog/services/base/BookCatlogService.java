@@ -14,5 +14,5 @@ public interface BookCatlogService {
        List<BookCatlogAudit> searchBookByAuthor(String author);
 
 
-
+       ResBookCatlog updateBook(ReqBookCatlog reqBookCatlog);
 }
